@@ -6,12 +6,23 @@
   <title>Agende sua consulta | Dra. Delane Cavalcante</title>
   <meta name="description" content="Agende sua consulta com a Dra. Delane Cavalcante, cirurgiã plástica no Rio de Janeiro com 24 anos de experiência e mais de 3 mil cirurgias realizadas.">
   <meta name="theme-color" content="#111312">
+  <script>
+    try {
+      document.documentElement.dataset.theme = localStorage.getItem('delane-theme') || 'dark';
+    } catch {
+      document.documentElement.dataset.theme = 'dark';
+    }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-BpQ2wAXJ.css">
+  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-DapZjgwu.css">
 </head>
 <body>
+  <div class="theme-toolbar" role="group" aria-label="Escolha a aparência da página">
+    <button type="button" data-theme-option="dark">Versão atual</button>
+    <button type="button" data-theme-option="light">Versão clara</button>
+  </div>
   <main>
     <section class="hero section-dark">
       <div class="container hero-inner">
@@ -207,6 +218,27 @@
 
   <a class="whatsapp" href="https://wa.me/5521972609832?text=Olá%2C%20quero%20agendar%20uma%20consulta%20com%20a%20Dra.%20Delane." target="_blank" rel="noopener" aria-label="Agendar consulta pelo WhatsApp">✆</a>
   <script>
+    const themeButtons = [...document.querySelectorAll('[data-theme-option]')];
+    const themeColor = document.querySelector('meta[name="theme-color"]');
+
+    const setTheme = (theme) => {
+      document.documentElement.dataset.theme = theme;
+      themeButtons.forEach((button) => {
+        const selected = button.dataset.themeOption === theme;
+        button.classList.toggle('active', selected);
+        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
+      });
+      themeColor.setAttribute('content', theme === 'light' ? '#f5f0ea' : '#111312');
+      try {
+        localStorage.setItem('delane-theme', theme);
+      } catch {}
+    };
+
+    themeButtons.forEach((button) => {
+      button.addEventListener('click', () => setTheme(button.dataset.themeOption));
+    });
+    setTheme(document.documentElement.dataset.theme || 'dark');
+
     document.querySelectorAll('[data-carousel]').forEach((carousel) => {
       const viewport = carousel.querySelector('.carousel-viewport');
       const track = carousel.querySelector('.carousel-track');
