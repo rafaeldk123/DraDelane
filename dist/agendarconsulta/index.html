@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-l3rNRz8s.css">
+  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-BpQ2wAXJ.css">
 </head>
 <body>
   <main>
@@ -17,14 +17,10 @@
       <div class="container hero-inner">
         <img class="brand-logo" src="/logo.webp" alt="Dra. Delane Cavalcante">
         <h1>Conheça a <em>consulta com a Dra. Delane</em></h1>
-        <div class="hero-media">
-          <div class="media-glow"></div>
-          <img src="/delane/hero.png" alt="Dra. Delane Cavalcante">
-          <div class="media-copy">
-            <span>Cirurgia plástica</span>
-            <strong>delicada e detalhista</strong>
-            <small>24 anos de experiência · mais de 3 mil cirurgias</small>
-          </div>
+        <div class="hero-media video-placeholder" aria-label="Espaço reservado para o vídeo de apresentação da Dra. Delane">
+          <div class="placeholder-play" aria-hidden="true"></div>
+          <strong>Espaço reservado para vídeo</strong>
+          <span>Vídeo de apresentação da Dra. Delane · formato 16:9</span>
         </div>
         <a class="cta" href="https://wa.me/5521972609832?text=Olá%2C%20vim%20pelo%20site%20e%20quero%20agendar%20uma%20consulta%20com%20a%20Dra.%20Delane." target="_blank" rel="noopener">Agende uma avaliação</a>
       </div>
@@ -66,21 +62,31 @@
     <section class="showcase star-bg section-dark">
       <div class="container">
         <h2 class="display-title">Veja as <em>cirurgias plásticas</em></h2>
-        <div class="procedure-track">
-          <article class="procedure-card">
-            <img src="/delane/abdominoplastia.png" alt="Abdominoplastia HD">
-            <div><span>Contorno corporal</span><h3>Abdominoplastia HD</h3></div>
-          </article>
-          <article class="procedure-card">
-            <img src="/delane/mastopexia.png" alt="Mastopexia">
-            <div><span>Cirurgia das mamas</span><h3>Mastopexia</h3></div>
-          </article>
-          <article class="procedure-card">
-            <img src="/delane/lipo-hd.png" alt="Lipo HD">
-            <div><span>Definição corporal</span><h3>Lipo HD</h3></div>
-          </article>
+        <div class="carousel" data-carousel>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <article class="procedure-card carousel-slide">
+                <img src="/delane/abdominoplastia.png" alt="Abdominoplastia HD">
+                <div><span>Contorno corporal</span><h3>Abdominoplastia HD</h3></div>
+              </article>
+              <article class="procedure-card carousel-slide">
+                <img src="/delane/mastopexia.png" alt="Mastopexia">
+                <div><span>Cirurgia das mamas</span><h3>Mastopexia</h3></div>
+              </article>
+              <article class="procedure-card carousel-slide">
+                <img src="/delane/lipo-hd.png" alt="Lipo HD">
+                <div><span>Definição corporal</span><h3>Lipo HD</h3></div>
+              </article>
+              <article class="procedure-card carousel-slide">
+                <img src="/delane/mamoplastia.png" alt="Mamoplastia de aumento">
+                <div><span>Cirurgia das mamas</span><h3>Mamoplastia de aumento</h3></div>
+              </article>
+            </div>
+          </div>
+          <button class="carousel-arrow previous" type="button" data-carousel-prev aria-label="Ver card anterior">‹</button>
+          <button class="carousel-arrow next" type="button" data-carousel-next aria-label="Ver próximo card">›</button>
+          <div class="dots" data-carousel-dots aria-label="Navegação do carrossel"></div>
         </div>
-        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
       </div>
     </section>
 
@@ -126,12 +132,19 @@
     <section class="results star-bg section-dark">
       <div class="container">
         <h2 class="display-title">Veja o <em>cuidado em cada etapa</em></h2>
-        <div class="result-track">
-          <figure><img src="/delane/galeria-2.webp" alt="Dra. Delane durante sua rotina profissional"></figure>
-          <figure><img src="/delane/galeria-1.webp" alt="Dra. Delane acolhendo uma paciente"></figure>
-          <figure><img src="/delane/galeria-3.webp" alt="Dra. Delane em ambiente profissional"></figure>
+        <div class="carousel" data-carousel>
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <figure class="result-card carousel-slide"><img src="/delane/galeria-2.webp" alt="Dra. Delane durante sua rotina profissional"></figure>
+              <figure class="result-card carousel-slide"><img src="/delane/galeria-1.webp" alt="Dra. Delane acolhendo uma paciente"></figure>
+              <figure class="result-card carousel-slide"><img src="/delane/galeria-3.webp" alt="Dra. Delane em ambiente profissional"></figure>
+              <figure class="result-card carousel-slide"><img src="/delane/hero.png" alt="Retrato da Dra. Delane Cavalcante"></figure>
+            </div>
+          </div>
+          <button class="carousel-arrow previous" type="button" data-carousel-prev aria-label="Ver imagem anterior">‹</button>
+          <button class="carousel-arrow next" type="button" data-carousel-next aria-label="Ver próxima imagem">›</button>
+          <div class="dots" data-carousel-dots aria-label="Navegação do carrossel"></div>
         </div>
-        <div class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       </div>
     </section>
 
@@ -193,5 +206,68 @@
   </footer>
 
   <a class="whatsapp" href="https://wa.me/5521972609832?text=Olá%2C%20quero%20agendar%20uma%20consulta%20com%20a%20Dra.%20Delane." target="_blank" rel="noopener" aria-label="Agendar consulta pelo WhatsApp">✆</a>
+  <script>
+    document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+      const viewport = carousel.querySelector('.carousel-viewport');
+      const track = carousel.querySelector('.carousel-track');
+      const slides = [...carousel.querySelectorAll('.carousel-slide')];
+      const previous = carousel.querySelector('[data-carousel-prev]');
+      const next = carousel.querySelector('[data-carousel-next]');
+      const dots = carousel.querySelector('[data-carousel-dots]');
+      let index = 0;
+      let touchStart = 0;
+
+      slides.forEach((_, slideIndex) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.setAttribute('aria-label', `Ir para o card ${slideIndex + 1}`);
+        dot.addEventListener('click', () => {
+          index = slideIndex;
+          update();
+        });
+        dots.appendChild(dot);
+      });
+
+      const visibleSlides = () => {
+        const slideWidth = slides[0].getBoundingClientRect().width;
+        return Math.max(1, Math.round(viewport.clientWidth / slideWidth));
+      };
+
+      const update = () => {
+        const maxIndex = Math.max(0, slides.length - visibleSlides());
+        index = Math.min(Math.max(index, 0), maxIndex);
+        track.style.transform = `translateX(-${slides[index].offsetLeft}px)`;
+        previous.disabled = index === 0;
+        next.disabled = index === maxIndex;
+        [...dots.children].forEach((dot, dotIndex) => {
+          dot.hidden = dotIndex > maxIndex;
+          dot.classList.toggle('active', dotIndex === index);
+          dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+        });
+      };
+
+      previous.addEventListener('click', () => {
+        index -= 1;
+        update();
+      });
+      next.addEventListener('click', () => {
+        index += 1;
+        update();
+      });
+      carousel.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') previous.click();
+        if (event.key === 'ArrowRight') next.click();
+      });
+      viewport.addEventListener('touchstart', (event) => {
+        touchStart = event.changedTouches[0].clientX;
+      }, { passive: true });
+      viewport.addEventListener('touchend', (event) => {
+        const distance = event.changedTouches[0].clientX - touchStart;
+        if (Math.abs(distance) > 45) (distance < 0 ? next : previous).click();
+      }, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  </script>
 </body>
 </html>
