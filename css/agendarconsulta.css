@@ -104,14 +104,19 @@ html[data-theme="light"] .theme-toolbar {
 html[data-theme="light"] .theme-toolbar button { color: #655f5b; }
 html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
 
-.hero { padding: 75px 0 90px; text-align: center; }
+.hero { padding: 52px 0 84px; text-align: center; }
 .hero-inner { display: flex; flex-direction: column; align-items: center; }
-.brand-logo { width: 190px; max-height: 95px; margin-bottom: 30px; object-fit: contain; }
+.brand-logo { width: 112px; max-height: 58px; margin-bottom: 20px; object-fit: contain; }
 .hero h1 {
-  margin-bottom: 34px;
-  font-size: clamp(38px, 4.3vw, 58px);
-  line-height: 1.15;
+  max-width: 720px;
+  margin-bottom: 28px;
+  font-family: Montserrat, Arial, sans-serif;
+  font-size: clamp(30px, 3vw, 42px);
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -.035em;
 }
+.hero h1 em { font: inherit; color: var(--wine); }
 .hero-media {
   width: min(100%, 420px);
   margin-bottom: 48px;
@@ -329,8 +334,9 @@ html[data-theme="light"] .legal { color: #7d736d; border-color: #d3c8bf; }
 
 @media (max-width: 680px) {
   .container { width: min(100% - 28px, 1100px); }
-  .hero { padding-top: 45px; }
-  .brand-logo { width: 155px; }
+  .hero { padding-top: 68px; }
+  .brand-logo { width: 92px; max-height: 48px; margin-bottom: 16px; }
+  .hero h1 { max-width: 340px; margin-bottom: 22px; font-size: 28px; line-height: 1.14; letter-spacing: -.03em; }
   .theme-toolbar {
     top: 10px;
     right: 10px;
