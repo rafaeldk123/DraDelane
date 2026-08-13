@@ -113,41 +113,13 @@ html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
   line-height: 1.15;
 }
 .hero-media {
-  width: 100%;
-  aspect-ratio: 16 / 9;
+  width: min(100%, 420px);
   margin-bottom: 48px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
-  background:
-    linear-gradient(135deg, rgba(141,82,102,.15), rgba(17,19,18,.82)),
-    repeating-linear-gradient(45deg, transparent 0 22px, rgba(255,255,255,.018) 22px 23px);
-  border: 1px dashed rgba(230,202,135,.48);
-  box-shadow: inset 0 0 80px rgba(0,0,0,.35), 0 0 28px rgba(141,82,102,.12);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.34);
 }
-.video-placeholder strong { margin: 24px 0 9px; font-size: clamp(23px, 3vw, 38px); font-weight: 300; }
-.video-placeholder span { color: var(--muted); font-size: 13px; }
-.placeholder-play {
-  width: 86px;
-  height: 86px;
-  border: 1px solid var(--gold);
-  border-radius: 50%;
-  position: relative;
-}
-.placeholder-play::after {
-  position: absolute;
-  top: 50%;
-  left: 53%;
-  width: 0;
-  height: 0;
-  border-top: 13px solid transparent;
-  border-bottom: 13px solid transparent;
-  border-left: 20px solid var(--gold);
-  content: "";
-  transform: translate(-50%, -50%);
-}
+.hero-media iframe { display: block; border: 0; }
 
 .about { padding: 95px 0 120px; }
 .section-heading.compact { max-width: 980px; margin: 0 auto 42px; text-align: center; }
@@ -296,11 +268,7 @@ html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
 }
 
 html[data-theme="light"] .hero-media {
-  background:
-    linear-gradient(135deg, rgba(141,82,102,.09), rgba(255,255,255,.78)),
-    repeating-linear-gradient(45deg, transparent 0 22px, rgba(96,14,42,.025) 22px 23px);
-  border-color: rgba(96,14,42,.38);
-  box-shadow: inset 0 0 80px rgba(96,14,42,.035), 0 16px 45px rgba(96,14,42,.08);
+  box-shadow: 0 20px 60px rgba(96,14,42,.14);
 }
 html[data-theme="light"] .section-heading p,
 html[data-theme="light"] .info-card p,
@@ -372,9 +340,7 @@ html[data-theme="light"] .legal { color: #7d736d; border-color: #d3c8bf; }
     padding-inline: 11px;
     font-size: 10px;
   }
-  .video-placeholder strong { margin-top: 16px; font-size: 20px; }
-  .video-placeholder span { max-width: 260px; font-size: 11px; }
-  .placeholder-play { width: 62px; height: 62px; }
+  .hero-media { width: min(100%, 360px); border-radius: 16px; }
   .cta { width: 100%; min-width: 0; min-height: 64px; padding-inline: 20px; }
   .about, .showcase, .benefits, .stories, .results, .doctor, .faq { padding-block: 76px; }
   .info-grid, .story-cards, .footer-row { grid-template-columns: 1fr; }
