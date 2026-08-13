@@ -192,7 +192,6 @@ html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
   position: relative;
   height: 330px;
   overflow: hidden;
-  border: 8px solid var(--wine-dark);
   background: #202322;
   color: #f4f4f2;
 }
@@ -206,40 +205,6 @@ html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
 .procedure-card > div { position: absolute; z-index: 2; right: 22px; bottom: 18px; left: 22px; text-align: left; }
 .procedure-card span { color: var(--gold); font-size: 11px; text-transform: uppercase; }
 .procedure-card h3 { margin: 5px 0 0; font-size: 23px; font-weight: 400; }
-.carousel-arrow {
-  position: absolute;
-  z-index: 3;
-  top: calc(50% - 26px);
-  display: flex;
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  background: rgba(17,19,18,.88);
-  border: 1px solid var(--wine);
-  border-radius: 50%;
-  cursor: pointer;
-  font: 300 34px/1 Montserrat, sans-serif;
-  transition: opacity .2s ease, background .2s ease;
-}
-.carousel-arrow:hover { background: var(--wine-dark); }
-.carousel-arrow:disabled { opacity: .28; cursor: default; }
-.carousel-arrow.previous { left: -24px; }
-.carousel-arrow.next { right: -24px; }
-.dots { display: flex; justify-content: center; gap: 10px; margin-top: 25px; }
-.dots button {
-  width: 7px;
-  height: 7px;
-  padding: 0;
-  background: #d7d7d7;
-  border: 0;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: width .25s ease, background .25s ease;
-}
-.dots button.active { width: 38px; background: var(--wine); border-radius: 999px; }
-
 .benefits { padding: 100px 0; border-top: 1px solid #242725; }
 .benefit-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 90px; align-items: start; }
 .benefit-layout h2 { font-size: clamp(40px, 4.5vw, 60px); line-height: 1.12; }
@@ -274,7 +239,6 @@ html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
   height: 390px;
   margin: 0;
   overflow: hidden;
-  border: 1px solid #555b57;
   border-radius: 4px;
 }
 .result-card img { width: 100%; height: 100%; object-fit: cover; }
@@ -370,7 +334,7 @@ html[data-theme="light"] .story-cards blockquote {
   box-shadow: 0 14px 38px rgba(73,52,58,.07);
 }
 html[data-theme="light"] .story-cards blockquote p { color: #494341; }
-html[data-theme="light"] .result-card { border-color: #cfc2b8; background: #fff; }
+html[data-theme="light"] .result-card { background: #fff; }
 html[data-theme="light"] .doctor-photo {
   background: radial-gradient(circle, rgba(141,82,102,.13), transparent 65%);
 }
@@ -388,10 +352,6 @@ html[data-theme="light"] .footer { background-color: #ede6de; }
 html[data-theme="light"] .footer-row p,
 html[data-theme="light"] .footer-row a { color: #625b57; }
 html[data-theme="light"] .legal { color: #7d736d; border-color: #d3c8bf; }
-html[data-theme="light"] .carousel-arrow { background: rgba(96,14,42,.9); }
-html[data-theme="light"] .dots button { background: #b8aca3; }
-html[data-theme="light"] .dots button.active { background: var(--wine-dark); }
-
 @media (max-width: 900px) {
   .carousel-slide { flex-basis: calc((100% - var(--carousel-gap)) / 2); }
   .benefit-layout, .stories-layout, .doctor-layout { grid-template-columns: 1fr; gap: 55px; }
@@ -419,8 +379,6 @@ html[data-theme="light"] .dots button.active { background: var(--wine-dark); }
   .about, .showcase, .benefits, .stories, .results, .doctor, .faq { padding-block: 76px; }
   .info-grid, .story-cards, .footer-row { grid-template-columns: 1fr; }
   .carousel-slide { flex-basis: 72%; }
-  .carousel-arrow.previous { left: 10px; }
-  .carousel-arrow.next { right: 10px; }
   .procedure-card { height: 280px; }
   .story-cards blockquote { min-height: 310px; }
   .story-cards blockquote:nth-child(2) { display: none; }

@@ -16,7 +16,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-CXEvaSRv.css">
+  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-DAtc7fTt.css">
 </head>
 <body>
   <div class="theme-toolbar" role="group" aria-label="Escolha a aparência da página">
@@ -94,9 +94,6 @@
               </article>
             </div>
           </div>
-          <button class="carousel-arrow previous" type="button" data-carousel-prev aria-label="Ver card anterior">‹</button>
-          <button class="carousel-arrow next" type="button" data-carousel-next aria-label="Ver próximo card">›</button>
-          <div class="dots" data-carousel-dots aria-label="Navegação do carrossel"></div>
         </div>
       </div>
     </section>
@@ -152,9 +149,6 @@
               <figure class="result-card carousel-slide"><img src="/delane/hero.png" alt="Retrato da Dra. Delane Cavalcante"></figure>
             </div>
           </div>
-          <button class="carousel-arrow previous" type="button" data-carousel-prev aria-label="Ver imagem anterior">‹</button>
-          <button class="carousel-arrow next" type="button" data-carousel-next aria-label="Ver próxima imagem">›</button>
-          <div class="dots" data-carousel-dots aria-label="Navegação do carrossel"></div>
         </div>
       </div>
     </section>
@@ -243,9 +237,6 @@
       const viewport = carousel.querySelector('.carousel-viewport');
       const track = carousel.querySelector('.carousel-track');
       const slides = [...carousel.querySelectorAll('.carousel-slide')];
-      const previous = carousel.querySelector('[data-carousel-prev]');
-      const next = carousel.querySelector('[data-carousel-next]');
-      const dots = carousel.querySelector('[data-carousel-dots]');
       let touchStart = 0;
       let position = 0;
       let cycleWidth = 0;
@@ -260,16 +251,6 @@
         track.appendChild(clone);
       });
 
-      slides.forEach((_, slideIndex) => {
-        const dot = document.createElement('button');
-        dot.type = 'button';
-        dot.setAttribute('aria-label', `Ir para o card ${slideIndex + 1}`);
-        dot.addEventListener('click', () => {
-          moveTo(slides[slideIndex].offsetLeft);
-        });
-        dots.appendChild(dot);
-      });
-
       const normalizePosition = () => {
         if (!cycleWidth) return;
         position = ((position % cycleWidth) + cycleWidth) % cycleWidth;
@@ -278,12 +259,6 @@
       const render = (normalize = true) => {
         if (normalize) normalizePosition();
         track.style.transform = `translate3d(-${position}px, 0, 0)`;
-        const step = cycleWidth / slides.length || 1;
-        const activeIndex = ((Math.round(position / step) % slides.length) + slides.length) % slides.length;
-        [...dots.children].forEach((dot, dotIndex) => {
-          dot.classList.toggle('active', dotIndex === activeIndex);
-          dot.setAttribute('aria-current', dotIndex === activeIndex ? 'true' : 'false');
-        });
       };
 
       const measure = () => {
@@ -330,12 +305,6 @@
         window.requestAnimationFrame(animate);
       };
 
-      previous.addEventListener('click', () => moveByCard(-1));
-      next.addEventListener('click', () => moveByCard(1));
-      carousel.addEventListener('keydown', (event) => {
-        if (event.key === 'ArrowLeft') previous.click();
-        if (event.key === 'ArrowRight') next.click();
-      });
       viewport.addEventListener('touchstart', (event) => {
         interactionPaused = true;
         touchStart = event.changedTouches[0].clientX;
