@@ -68,42 +68,6 @@ p { color: var(--muted); line-height: 1.55; }
 }
 .cta:hover { transform: translateY(-3px); filter: brightness(1.1); }
 
-.theme-toolbar {
-  position: fixed;
-  z-index: 50;
-  top: 18px;
-  right: 20px;
-  display: flex;
-  gap: 4px;
-  padding: 5px;
-  background: rgba(28,31,30,.92);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  box-shadow: 0 8px 28px rgba(0,0,0,.18);
-  backdrop-filter: blur(12px);
-}
-.theme-toolbar button {
-  min-height: 36px;
-  padding: 0 15px;
-  color: #d7d9d7;
-  background: transparent;
-  border: 0;
-  border-radius: 999px;
-  cursor: pointer;
-  font: 500 11px/1 Montserrat, sans-serif;
-  letter-spacing: .02em;
-}
-.theme-toolbar button.active {
-  color: #fff;
-  background: var(--wine-dark);
-}
-html[data-theme="light"] .theme-toolbar {
-  background: rgba(255,255,255,.9);
-  box-shadow: 0 8px 28px rgba(96,14,42,.1);
-}
-html[data-theme="light"] .theme-toolbar button { color: #655f5b; }
-html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
-
 .hero { padding: 52px 0 84px; text-align: center; }
 .hero-inner { display: flex; flex-direction: column; align-items: center; }
 .brand-logo { width: 112px; max-height: 58px; margin-bottom: 20px; object-fit: contain; }
@@ -337,15 +301,6 @@ html[data-theme="light"] .legal { color: #7d736d; border-color: #d3c8bf; }
   .hero { padding-top: 68px; }
   .brand-logo { width: 92px; max-height: 48px; margin-bottom: 16px; }
   .hero h1 { max-width: 340px; margin-bottom: 22px; font-size: 28px; line-height: 1.14; letter-spacing: -.03em; }
-  .theme-toolbar {
-    top: 10px;
-    right: 10px;
-  }
-  .theme-toolbar button {
-    min-height: 32px;
-    padding-inline: 11px;
-    font-size: 10px;
-  }
   .hero-media { width: min(100%, 360px); border-radius: 16px; }
   .cta { width: 100%; min-width: 0; min-height: 64px; padding-inline: 20px; }
   .about, .showcase, .benefits, .stories, .results, .doctor, .faq { padding-block: 76px; }

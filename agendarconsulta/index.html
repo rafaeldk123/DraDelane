@@ -15,10 +15,6 @@
   <link rel="stylesheet" href="/css/agendarconsulta.css">
 </head>
 <body>
-  <div class="theme-toolbar" role="group" aria-label="Escolha a aparência da página">
-    <button type="button" data-theme-option="light">Versão clara</button>
-    <button type="button" data-theme-option="dark">Versão escura</button>
-  </div>
   <main>
     <section class="hero section-dark">
       <div class="container hero-inner">
@@ -211,26 +207,8 @@
 
   <a class="whatsapp" href="https://wa.me/5521972609832?text=Olá%2C%20quero%20agendar%20uma%20consulta%20com%20a%20Dra.%20Delane." target="_blank" rel="noopener" aria-label="Agendar consulta pelo WhatsApp">✆</a>
   <script>
-    const themeButtons = [...document.querySelectorAll('[data-theme-option]')];
     const themeColor = document.querySelector('meta[name="theme-color"]');
-
-    const setTheme = (theme) => {
-      document.documentElement.dataset.theme = theme;
-      themeButtons.forEach((button) => {
-        const selected = button.dataset.themeOption === theme;
-        button.classList.toggle('active', selected);
-        button.setAttribute('aria-pressed', selected ? 'true' : 'false');
-      });
-      themeColor.setAttribute('content', theme === 'light' ? '#f5f0ea' : '#111312');
-    };
-
-    themeButtons.forEach((button) => {
-      button.addEventListener('click', () => {
-        const target = button.dataset.themeOption === 'dark' ? '/agendarconsulta-escura/' : '/agendarconsulta/';
-        if (location.pathname !== target) location.href = target;
-      });
-    });
-    setTheme(document.documentElement.dataset.theme || 'light');
+    themeColor.setAttribute('content', document.documentElement.dataset.theme === 'dark' ? '#111312' : '#f5f0ea');
 
     document.querySelectorAll('[data-carousel]').forEach((carousel) => {
       const viewport = carousel.querySelector('.carousel-viewport');
