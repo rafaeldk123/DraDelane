@@ -298,7 +298,7 @@ html[data-theme="light"] .legal { color: #7d736d; border-color: #d3c8bf; }
 
 @media (max-width: 680px) {
   .container { width: min(100% - 28px, 1100px); }
-  .hero { padding-top: 68px; }
+  .hero { padding-top: max(20px, env(safe-area-inset-top)); }
   .brand-logo { width: 92px; max-height: 48px; margin-bottom: 16px; }
   .hero h1 { max-width: 340px; margin-bottom: 22px; font-size: 28px; line-height: 1.14; letter-spacing: -.03em; }
   .hero-media { width: min(100%, 360px); border-radius: 16px; }
