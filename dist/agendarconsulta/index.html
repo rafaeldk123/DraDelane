@@ -286,7 +286,6 @@
 
       const startAutoplay = () => {
         stopAutoplay();
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         autoplayTimer = window.setInterval(() => {
           index += 1;
           update();
