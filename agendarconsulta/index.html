@@ -246,94 +246,109 @@
       const previous = carousel.querySelector('[data-carousel-prev]');
       const next = carousel.querySelector('[data-carousel-next]');
       const dots = carousel.querySelector('[data-carousel-dots]');
-      let index = 0;
       let touchStart = 0;
-      let autoplayTimer;
-      const autoplayDelay = 4200;
+      let position = 0;
+      let cycleWidth = 0;
+      let lastFrame = 0;
+      let interactionPaused = false;
+      let stepTimeout;
+      const speed = 28;
+
+      slides.forEach((slide) => {
+        const clone = slide.cloneNode(true);
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
 
       slides.forEach((_, slideIndex) => {
         const dot = document.createElement('button');
         dot.type = 'button';
         dot.setAttribute('aria-label', `Ir para o card ${slideIndex + 1}`);
         dot.addEventListener('click', () => {
-          index = slideIndex;
-          update();
-          restartAutoplay();
+          moveTo(slides[slideIndex].offsetLeft);
         });
         dots.appendChild(dot);
       });
 
-      const visibleSlides = () => {
-        const slideWidth = slides[0].getBoundingClientRect().width;
-        return Math.max(1, Math.round(viewport.clientWidth / slideWidth));
+      const normalizePosition = () => {
+        if (!cycleWidth) return;
+        position = ((position % cycleWidth) + cycleWidth) % cycleWidth;
       };
 
-      const update = () => {
-        const maxIndex = Math.max(0, slides.length - visibleSlides());
-        if (index > maxIndex) index = 0;
-        if (index < 0) index = maxIndex;
-        track.style.transform = `translateX(-${slides[index].offsetLeft}px)`;
+      const render = (normalize = true) => {
+        if (normalize) normalizePosition();
+        track.style.transform = `translate3d(-${position}px, 0, 0)`;
+        const step = cycleWidth / slides.length || 1;
+        const activeIndex = ((Math.round(position / step) % slides.length) + slides.length) % slides.length;
         [...dots.children].forEach((dot, dotIndex) => {
-          dot.hidden = dotIndex > maxIndex;
-          dot.classList.toggle('active', dotIndex === index);
-          dot.setAttribute('aria-current', dotIndex === index ? 'true' : 'false');
+          dot.classList.toggle('active', dotIndex === activeIndex);
+          dot.setAttribute('aria-current', dotIndex === activeIndex ? 'true' : 'false');
         });
       };
 
-      const stopAutoplay = () => {
-        window.clearInterval(autoplayTimer);
+      const measure = () => {
+        const firstClone = track.children[slides.length];
+        const oldCycleWidth = cycleWidth;
+        cycleWidth = firstClone.offsetLeft - slides[0].offsetLeft;
+        if (oldCycleWidth) position = (position / oldCycleWidth) * cycleWidth;
+        render();
       };
 
-      const startAutoplay = () => {
-        stopAutoplay();
-        autoplayTimer = window.setInterval(() => {
-          index += 1;
-          update();
-        }, autoplayDelay);
+      const moveTo = (target) => {
+        window.clearTimeout(stepTimeout);
+        track.classList.remove('is-stepping');
+        normalizePosition();
+        if (target < 0) {
+          position += cycleWidth;
+          target += cycleWidth;
+          render(false);
+        }
+        position = target;
+        track.classList.add('is-stepping');
+        render(false);
+        stepTimeout = window.setTimeout(() => {
+          track.classList.remove('is-stepping');
+          normalizePosition();
+          render(false);
+          lastFrame = performance.now();
+        }, 480);
       };
 
-      const restartAutoplay = () => {
-        stopAutoplay();
-        startAutoplay();
+      const moveByCard = (direction) => {
+        const step = cycleWidth / slides.length;
+        moveTo(position + (step * direction));
       };
 
-      previous.addEventListener('click', () => {
-        index -= 1;
-        update();
-        restartAutoplay();
-      });
-      next.addEventListener('click', () => {
-        index += 1;
-        update();
-        restartAutoplay();
-      });
+      const animate = (time) => {
+        if (!lastFrame) lastFrame = time;
+        const elapsed = Math.min((time - lastFrame) / 1000, .05);
+        lastFrame = time;
+        if (!document.hidden && !interactionPaused && !track.classList.contains('is-stepping')) {
+          position += speed * elapsed;
+          render();
+        }
+        window.requestAnimationFrame(animate);
+      };
+
+      previous.addEventListener('click', () => moveByCard(-1));
+      next.addEventListener('click', () => moveByCard(1));
       carousel.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft') previous.click();
         if (event.key === 'ArrowRight') next.click();
       });
       viewport.addEventListener('touchstart', (event) => {
-        stopAutoplay();
+        interactionPaused = true;
         touchStart = event.changedTouches[0].clientX;
       }, { passive: true });
       viewport.addEventListener('touchend', (event) => {
         const distance = event.changedTouches[0].clientX - touchStart;
-        if (Math.abs(distance) > 45) (distance < 0 ? next : previous).click();
-        else startAutoplay();
+        if (Math.abs(distance) > 45) moveByCard(distance < 0 ? 1 : -1);
+        interactionPaused = false;
       }, { passive: true });
-      carousel.addEventListener('mouseenter', stopAutoplay);
-      carousel.addEventListener('mouseleave', startAutoplay);
-      carousel.addEventListener('focusin', stopAutoplay);
-      carousel.addEventListener('focusout', startAutoplay);
-      document.addEventListener('visibilitychange', () => {
-        if (document.hidden) stopAutoplay();
-        else startAutoplay();
-      });
-      window.addEventListener('resize', () => {
-        update();
-        restartAutoplay();
-      });
-      update();
-      startAutoplay();
+      viewport.addEventListener('touchcancel', () => { interactionPaused = false; }, { passive: true });
+      window.addEventListener('resize', measure);
+      measure();
+      window.requestAnimationFrame(animate);
     });
   </script>
 </body>

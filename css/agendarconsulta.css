@@ -184,9 +184,9 @@ html[data-theme="light"] .theme-toolbar button.active { color: #fff; }
   --carousel-gap: 18px;
   display: flex;
   gap: var(--carousel-gap);
-  transition: transform .48s cubic-bezier(.22,.61,.36,1);
   will-change: transform;
 }
+.carousel-track.is-stepping { transition: transform .48s cubic-bezier(.22,.61,.36,1); }
 .carousel-slide { flex: 0 0 calc((100% - (var(--carousel-gap) * 2)) / 3); }
 .procedure-card {
   position: relative;
@@ -418,7 +418,7 @@ html[data-theme="light"] .dots button.active { background: var(--wine-dark); }
   .cta { width: 100%; min-width: 0; min-height: 64px; padding-inline: 20px; }
   .about, .showcase, .benefits, .stories, .results, .doctor, .faq { padding-block: 76px; }
   .info-grid, .story-cards, .footer-row { grid-template-columns: 1fr; }
-  .carousel-slide { flex-basis: 100%; }
+  .carousel-slide { flex-basis: 72%; }
   .carousel-arrow.previous { left: 10px; }
   .carousel-arrow.next { right: 10px; }
   .procedure-card { height: 280px; }
