@@ -248,6 +248,8 @@
       const dots = carousel.querySelector('[data-carousel-dots]');
       let index = 0;
       let touchStart = 0;
+      let autoplayTimer;
+      const autoplayDelay = 4200;
 
       slides.forEach((_, slideIndex) => {
         const dot = document.createElement('button');
@@ -256,6 +258,7 @@
         dot.addEventListener('click', () => {
           index = slideIndex;
           update();
+          restartAutoplay();
         });
         dots.appendChild(dot);
       });
@@ -267,10 +270,9 @@
 
       const update = () => {
         const maxIndex = Math.max(0, slides.length - visibleSlides());
-        index = Math.min(Math.max(index, 0), maxIndex);
+        if (index > maxIndex) index = 0;
+        if (index < 0) index = maxIndex;
         track.style.transform = `translateX(-${slides[index].offsetLeft}px)`;
-        previous.disabled = index === 0;
-        next.disabled = index === maxIndex;
         [...dots.children].forEach((dot, dotIndex) => {
           dot.hidden = dotIndex > maxIndex;
           dot.classList.toggle('active', dotIndex === index);
@@ -278,27 +280,61 @@
         });
       };
 
+      const stopAutoplay = () => {
+        window.clearInterval(autoplayTimer);
+      };
+
+      const startAutoplay = () => {
+        stopAutoplay();
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        autoplayTimer = window.setInterval(() => {
+          index += 1;
+          update();
+        }, autoplayDelay);
+      };
+
+      const restartAutoplay = () => {
+        stopAutoplay();
+        startAutoplay();
+      };
+
       previous.addEventListener('click', () => {
         index -= 1;
         update();
+        restartAutoplay();
       });
       next.addEventListener('click', () => {
         index += 1;
         update();
+        restartAutoplay();
       });
       carousel.addEventListener('keydown', (event) => {
         if (event.key === 'ArrowLeft') previous.click();
         if (event.key === 'ArrowRight') next.click();
       });
       viewport.addEventListener('touchstart', (event) => {
+        stopAutoplay();
         touchStart = event.changedTouches[0].clientX;
       }, { passive: true });
       viewport.addEventListener('touchend', (event) => {
         const distance = event.changedTouches[0].clientX - touchStart;
         if (Math.abs(distance) > 45) (distance < 0 ? next : previous).click();
+        else startAutoplay();
       }, { passive: true });
-      window.addEventListener('resize', update);
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+      carousel.addEventListener('focusin', stopAutoplay);
+      carousel.addEventListener('focusout', startAutoplay);
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) stopAutoplay();
+        else startAutoplay();
+      });
+      window.addEventListener('resize', () => {
+        update();
+        restartAutoplay();
+      });
       update();
+      startAutoplay();
     });
   </script>
 </body>

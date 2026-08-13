@@ -421,10 +421,10 @@ html[data-theme="light"] .dots button.active { background: var(--wine-dark); }
   .carousel-slide { flex-basis: 100%; }
   .carousel-arrow.previous { left: 10px; }
   .carousel-arrow.next { right: 10px; }
-  .procedure-card { height: 360px; }
+  .procedure-card { height: 280px; }
   .story-cards blockquote { min-height: 310px; }
   .story-cards blockquote:nth-child(2) { display: none; }
-  .result-card { height: 470px; }
+  .result-card { height: 320px; }
   .faq-cta { width: 100%; }
   .footer-row { text-align: center; }
   .footer-row img { margin-inline: auto; }
