@@ -92,18 +92,24 @@ p { color: var(--muted); line-height: 1.55; }
 
 .about { padding: 95px 0 120px; }
 .section-heading.compact { max-width: 980px; margin: 0 auto 42px; text-align: center; }
+.section-heading > span {
+  margin-bottom: 18px;
+  font-size: clamp(19px, 1.6vw, 22px);
+  font-weight: 500;
+  letter-spacing: -.01em;
+}
 .section-heading h2 { margin-bottom: 22px; font-size: clamp(40px, 4vw, 54px); font-style: italic; }
 .section-heading p { color: #d3d5d3; font-size: 17px; }
-.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
 .info-card {
-  min-height: 185px;
-  padding: 28px 30px;
-  background: rgba(255,255,255,.045);
-  border: 1px solid #666b68;
-  border-radius: 20px;
+  min-height: 168px;
+  padding: 26px 28px;
+  background: rgba(255,255,255,.025);
+  border: 1px solid rgba(102,107,104,.7);
+  border-radius: 6px;
 }
-.info-card b { color: var(--wine); font-size: 20px; font-weight: 500; }
-.info-card h3 { margin: 24px 0 9px; font-size: 22px; font-weight: 500; }
+.info-card b { color: var(--wine); font-size: 16px; font-weight: 600; }
+.info-card h3 { margin: 18px 0 8px; font-size: 21px; font-weight: 500; }
 .info-card p { margin-bottom: 0; color: #d5d7d5; }
 
 .star-bg {
@@ -246,9 +252,9 @@ html[data-theme="light"] .doctor-layout p {
   color: #514b48;
 }
 html[data-theme="light"] .info-card {
-  background: rgba(255,255,255,.76);
-  border-color: #d6cac1;
-  box-shadow: 0 12px 34px rgba(73,52,58,.06);
+  background: rgba(255,255,255,.28);
+  border-color: rgba(151,137,128,.48);
+  box-shadow: none;
 }
 html[data-theme="light"] .star-bg {
   background-color: var(--bg);
@@ -304,7 +310,12 @@ html[data-theme="light"] .legal { color: #7d736d; border-color: #d3c8bf; }
   .hero-media { width: min(100%, 360px); border-radius: 16px; }
   .cta { width: 100%; min-width: 0; min-height: 64px; padding-inline: 20px; }
   .about, .showcase, .benefits, .stories, .results, .doctor, .faq { padding-block: 76px; }
+  .section-heading > span { margin-bottom: 14px; font-size: 18px; }
+  .section-heading.compact { margin-bottom: 34px; }
   .info-grid, .story-cards, .footer-row { grid-template-columns: 1fr; }
+  .info-grid { gap: 12px; }
+  .info-card { min-height: 0; padding: 23px 22px; border-radius: 4px; }
+  .info-card h3 { margin-top: 14px; }
   .carousel-slide { flex-basis: 72%; }
   .procedure-card { height: 280px; }
   .story-cards blockquote { min-height: 310px; }
