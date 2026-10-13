@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-BwTplSaM.css">
+  <link rel="stylesheet" crossorigin href="/assets/agendarconsulta-DUz8byWh.css">
 </head>
 <body>
   <main>
@@ -99,13 +99,55 @@
           <span class="kicker">Principais benefícios</span>
           <h2>O primeiro passo para uma decisão <em>consciente</em></h2>
         </header>
-        <div class="benefit-list">
-          <div><b>01</b><p>Planejamento baseado na sua anatomia e nos seus objetivos</p></div>
-          <div><b>02</b><p>Orientação sobre o procedimento mais indicado para o seu caso</p></div>
-          <div><b>03</b><p>Conversa transparente sobre resultados possíveis e limitações</p></div>
-          <div><b>04</b><p>Explicações completas sobre preparação e recuperação</p></div>
-          <div><b>05</b><p>Cirurgias em hospitais com CTI, emergência e equipe de plantão</p></div>
-          <div><b>06</b><p>Acompanhamento de uma equipe experiente em toda a jornada</p></div>
+        <div class="benefit-list" aria-label="Etapas do cuidado">
+          <details class="benefit-step" open>
+            <summary>
+              <span class="benefit-number">01</span>
+              <span class="benefit-title">Planejamento baseado na sua anatomia e nos seus objetivos</span>
+              <span class="benefit-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="benefit-detail"><p>Durante a avaliação, proporções, características individuais e expectativas são consideradas para construir um plano verdadeiramente personalizado.</p></div>
+          </details>
+          <details class="benefit-step">
+            <summary>
+              <span class="benefit-number">02</span>
+              <span class="benefit-title">Orientação sobre o procedimento mais indicado para o seu caso</span>
+              <span class="benefit-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="benefit-detail"><p>As possibilidades são avaliadas de forma individual, para que você entenda qual caminho faz sentido para suas necessidades e seu momento.</p></div>
+          </details>
+          <details class="benefit-step">
+            <summary>
+              <span class="benefit-number">03</span>
+              <span class="benefit-title">Conversa transparente sobre resultados possíveis e limitações</span>
+              <span class="benefit-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="benefit-detail"><p>Expectativas, possibilidades e limites são conversados com clareza, contribuindo para uma decisão consciente e bem informada.</p></div>
+          </details>
+          <details class="benefit-step">
+            <summary>
+              <span class="benefit-number">04</span>
+              <span class="benefit-title">Explicações completas sobre preparação e recuperação</span>
+              <span class="benefit-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="benefit-detail"><p>Cada fase é explicada com antecedência, incluindo os cuidados necessários antes do procedimento e ao longo da recuperação.</p></div>
+          </details>
+          <details class="benefit-step">
+            <summary>
+              <span class="benefit-number">05</span>
+              <span class="benefit-title">Cirurgias em hospitais com CTI, emergência e equipe de plantão</span>
+              <span class="benefit-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="benefit-detail"><p>Quando há indicação cirúrgica, a estrutura hospitalar faz parte do planejamento para oferecer suporte adequado durante o procedimento.</p></div>
+          </details>
+          <details class="benefit-step">
+            <summary>
+              <span class="benefit-number">06</span>
+              <span class="benefit-title">Acompanhamento de uma equipe experiente em toda a jornada</span>
+              <span class="benefit-toggle" aria-hidden="true"></span>
+            </summary>
+            <div class="benefit-detail"><p>O cuidado continua depois da decisão, com uma equipe presente para orientar as etapas e acompanhar a evolução de cada paciente.</p></div>
+          </details>
         </div>
       </div>
     </section>
@@ -209,6 +251,15 @@
   <script>
     const themeColor = document.querySelector('meta[name="theme-color"]');
     themeColor.setAttribute('content', document.documentElement.dataset.theme === 'dark' ? '#111312' : '#f5f0ea');
+
+    document.querySelectorAll('.benefit-step').forEach((step) => {
+      step.addEventListener('toggle', () => {
+        if (!step.open) return;
+        document.querySelectorAll('.benefit-step[open]').forEach((openStep) => {
+          if (openStep !== step) openStep.removeAttribute('open');
+        });
+      });
+    });
 
     document.querySelectorAll('[data-carousel]').forEach((carousel) => {
       const viewport = carousel.querySelector('.carousel-viewport');

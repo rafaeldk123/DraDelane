@@ -165,10 +165,45 @@ p { color: var(--muted); line-height: 1.55; }
 .benefits { padding: 100px 0; border-top: 1px solid #242725; }
 .benefit-layout { display: grid; grid-template-columns: .75fr 1.25fr; gap: 90px; align-items: start; }
 .benefit-layout h2 { font-size: clamp(40px, 4.5vw, 60px); line-height: 1.12; }
-.benefit-list { border-top: 1px solid var(--line); }
-.benefit-list > div { display: grid; min-height: 82px; grid-template-columns: 55px 1fr; align-items: center; border-bottom: 1px solid var(--line); }
-.benefit-list b { color: var(--wine); font-size: 13px; font-weight: 500; }
-.benefit-list p { margin: 0; color: #e5e6e5; font-size: 15px; }
+.benefit-list { position: relative; border-top: 1px solid var(--line); }
+.benefit-list::before { position: absolute; z-index: 0; top: 31px; bottom: 31px; left: 22px; width: 1px; background: var(--line); content: ""; }
+.benefit-step { position: relative; z-index: 1; border-bottom: 1px solid var(--line); }
+.benefit-step summary {
+  display: grid;
+  min-height: 82px;
+  grid-template-columns: 46px 1fr 28px;
+  gap: 14px;
+  align-items: center;
+  padding: 12px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.benefit-step summary::-webkit-details-marker { display: none; }
+.benefit-number {
+  display: inline-flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  color: var(--wine);
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color .25s ease, background-color .25s ease, border-color .25s ease;
+}
+.benefit-title { color: #e5e6e5; font-size: 15px; line-height: 1.45; transition: color .25s ease; }
+.benefit-toggle { position: relative; width: 28px; height: 28px; }
+.benefit-toggle::before,
+.benefit-toggle::after { position: absolute; top: 50%; left: 50%; width: 12px; height: 1px; background: currentColor; content: ""; transform: translate(-50%, -50%); transition: transform .25s ease; }
+.benefit-toggle::after { transform: translate(-50%, -50%) rotate(90deg); }
+.benefit-step[open] .benefit-toggle::after { transform: translate(-50%, -50%) rotate(0); }
+.benefit-step[open] .benefit-number { color: #fff; background: var(--wine); border-color: var(--wine); }
+.benefit-step[open] .benefit-title { color: var(--white); font-weight: 500; }
+.benefit-detail { padding: 0 42px 24px 60px; }
+.benefit-detail p { max-width: 620px; margin: 0; color: #b9bcba; font-size: 13px; line-height: 1.65; }
+@media (hover: hover) { .benefit-step summary:hover .benefit-number { border-color: var(--wine); } .benefit-step summary:hover .benefit-title { color: var(--wine); } }
 
 .stories { padding: 115px 0 100px; border-top: 1px solid #292c2a; }
 .stories-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 95px; align-items: center; }
@@ -257,10 +292,13 @@ html[data-theme="light"] .hero-media {
 }
 html[data-theme="light"] .section-heading p,
 html[data-theme="light"] .info-card p,
-html[data-theme="light"] .benefit-list p,
+html[data-theme="light"] .benefit-detail p,
 html[data-theme="light"] .doctor-layout p {
   color: #514b48;
 }
+html[data-theme="light"] .benefit-number { background: var(--bg); }
+html[data-theme="light"] .benefit-step[open] .benefit-number { color: #fff; background: var(--wine); }
+html[data-theme="light"] .benefit-title { color: #403a38; }
 html[data-theme="light"] .info-card {
   background: rgba(255,255,255,.28);
   border-color: rgba(151,137,128,.48);
@@ -331,6 +369,13 @@ html[data-theme="light"] .legal { color: #7d736d; border-color: #d3c8bf; }
   .procedure-card { height: auto; border-radius: 14px; }
   .procedure-card > div { right: 18px; bottom: 18px; left: 18px; }
   .procedure-card h3 { font-size: 20px; }
+  .benefit-layout { gap: 34px; }
+  .benefit-layout h2 { max-width: 330px; font-size: 42px; }
+  .benefit-step summary { min-height: 76px; grid-template-columns: 42px 1fr 24px; gap: 11px; }
+  .benefit-list::before { left: 20px; }
+  .benefit-number { width: 40px; height: 40px; }
+  .benefit-title { font-size: 14px; }
+  .benefit-detail { padding: 0 28px 22px 53px; }
   .story-cards blockquote { min-height: 310px; }
   .story-cards blockquote:nth-child(2) { display: none; }
   .result-card { height: 320px; }
